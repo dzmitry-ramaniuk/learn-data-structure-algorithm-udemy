@@ -2,6 +2,7 @@ package com.learn.udemy.sort;
 
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class SortService {
@@ -17,6 +18,7 @@ public class SortService {
             case SELECTION -> result = selectionSort(unsorted);
             case INSERTION -> result = insertionSort(unsorted);
             case SHELL -> result = shellSort(unsorted);
+            case MERGE -> result = mergeSort(unsorted);
         }
         stopWatch.stop();
         if (showArray) {
@@ -25,6 +27,46 @@ public class SortService {
         System.out.println(sortType + " sort took: " + stopWatch.getTime() + "ms");
 
         return result;
+    }
+
+    private int[] mergeSort(int[] unsorted) {
+        int[] result = unsorted.clone();
+
+        mergeSort(result, 0, Array.getLength(result));
+
+        return result;
+    }
+
+    private void mergeSort(int[] input, int start, int end) {
+
+        if (end - start < 2) {
+            return;
+        }
+
+        int mid = (start + end) / 2;
+
+        mergeSort(input, start, mid);
+        mergeSort(input, mid, end);
+
+        merge(input, start, mid, end);
+    }
+
+    private void merge(int[] input, int start, int mid, int end) {
+        if (input[mid - 1] <= input[mid]) {
+            return;
+        }
+
+        int i = start;
+        int j = mid;
+        int tempIndex = 0;
+
+        int[] temp = new int[end - start];
+        while (i < mid && j < end) {
+            temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++];
+        }
+
+        System.arraycopy(input, i, input, start + tempIndex, mid - i);
+        System.arraycopy(temp, 0, input, start, tempIndex);
     }
 
     private int[] shellSort(int[] unsorted) {

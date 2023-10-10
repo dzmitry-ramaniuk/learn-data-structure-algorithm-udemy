@@ -7,6 +7,7 @@ import java.util.Random;
 
 import static com.learn.udemy.sort.SortType.BUBBLE;
 import static com.learn.udemy.sort.SortType.INSERTION;
+import static com.learn.udemy.sort.SortType.MERGE;
 import static com.learn.udemy.sort.SortType.SELECTION;
 import static com.learn.udemy.sort.SortType.SHELL;
 
@@ -15,7 +16,7 @@ public class Main {
         SortService sortService = new SortService();
 
         boolean showArray = false;
-        int[] unsortedArray = generateRandomArray(10000);
+        int[] unsortedArray = generateRandomArray(10);
         if (showArray) {
             System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));
         }
@@ -24,6 +25,7 @@ public class Main {
         sortService.sort(unsortedArray, SELECTION, showArray);
         sortService.sort(unsortedArray, INSERTION, showArray);
         sortService.sort(unsortedArray, SHELL, showArray);
+        sortService.sort(unsortedArray, MERGE, showArray);
     }
 
     private static int[] generateRandomArray(int size) {
