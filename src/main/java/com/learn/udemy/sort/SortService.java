@@ -19,6 +19,7 @@ public class SortService {
             case INSERTION -> result = insertionSort(unsorted);
             case SHELL -> result = shellSort(unsorted);
             case MERGE -> result = mergeSort(unsorted);
+            case QUICK -> result = quickSort(unsorted);
         }
         stopWatch.stop();
         if (showArray) {
@@ -27,6 +28,47 @@ public class SortService {
         System.out.println(sortType + " sort took: " + stopWatch.getTime() + "ms");
 
         return result;
+    }
+
+    private int[] quickSort(int[] unsorted) {
+        int[] result = unsorted.clone();
+
+        quickSort(result, 0, result.length);
+
+        return result;
+    }
+
+    private void quickSort(int[] input, int start, int end) {
+        if (end - start < 2) {
+            return;
+        }
+
+        int pivotIndex = partition(input, start, end);
+        quickSort(input, start, pivotIndex);
+        quickSort(input, pivotIndex + 1, end);
+    }
+
+    private int partition(int[] input, int start, int end) {
+        int pivot = input[start];
+        int i = start;
+        int j = end;
+
+        while (i < j) {
+            while (i < j && input[--j] >= pivot) {
+            }
+            if (i < j) {
+                input[i] = input[j];
+            }
+
+            while (i < j && input[++i] <= pivot) {
+            }
+            if (i < j) {
+                input[j] = input[i];
+            }
+        }
+
+        input[j] = pivot;
+        return j;
     }
 
     private int[] mergeSort(int[] unsorted) {
