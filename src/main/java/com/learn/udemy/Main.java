@@ -1,6 +1,7 @@
 package com.learn.udemy;
 
 import com.learn.udemy.sort.SortService;
+import com.learn.udemy.structure.BinarySearchTree;
 import com.learn.udemy.structure.DoubleLinkedList;
 import com.learn.udemy.structure.SingleLinkedList;
 
@@ -16,8 +17,18 @@ import static com.learn.udemy.sort.SortType.SHELL;
 
 public class Main {
     public static void main(String[] args) {
-        workWithSort();
-        workWithLinkedList();
+//        workWithSort();
+//        workWithLinkedList();
+        workWithBinaryTree();
+    }
+
+    private static void workWithBinaryTree() {
+        int[] ints = generateRandomArray(10);
+        BinarySearchTree bst = new BinarySearchTree();
+
+        Arrays.stream(ints).forEach(bst::insert);
+
+        System.out.println("=========");
     }
 
     private static void workWithSort() {
