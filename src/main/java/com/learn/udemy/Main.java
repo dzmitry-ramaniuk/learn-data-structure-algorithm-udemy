@@ -1,7 +1,7 @@
 package com.learn.udemy;
 
 import com.learn.udemy.sort.SortService;
-import com.learn.udemy.structure.BinarySearchTree;
+import com.learn.udemy.structure.BinaryTree;
 import com.learn.udemy.structure.DoubleLinkedList;
 import com.learn.udemy.structure.SingleLinkedList;
 
@@ -24,11 +24,27 @@ public class Main {
 
     private static void workWithBinaryTree() {
         int[] ints = generateRandomArray(10);
-        BinarySearchTree bst = new BinarySearchTree();
+        System.out.println(Arrays.toString(ints));
 
-        Arrays.stream(ints).forEach(bst::insert);
+        BinaryTree bt = new BinaryTree();
+        Arrays.stream(ints).forEach(bt::insert);
 
+        bt.traverseInOrder();
         System.out.println("=========");
+
+        System.out.println(ints[4]);
+        System.out.println(bt.get(ints[4]));
+        System.out.println("=========");
+
+        System.out.println("Min = " + bt.min());
+        System.out.println("Max = " + bt.max());
+        System.out.println("=========");
+
+        bt.delete(ints[4]);
+        bt.delete(ints[5]);
+        bt.traverseInOrder();
+        System.out.println("=========");
+
     }
 
     private static void workWithSort() {
